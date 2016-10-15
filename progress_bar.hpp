@@ -1,9 +1,9 @@
 #pragma once
-#include <sstream>   // std::ostringstream
+#include <algorithm> //std::min
+#include <cmath>     // std::pow
 #include <iomanip>   // std::setw,setprecision
 #include <iostream>  // std::clog
-#include <cmath>     // std::pow
-#include <algorithm> //std::min
+#include <sstream>   // std::ostringstream
 
 class progress_bar{
     using big_uint = unsigned long long;
