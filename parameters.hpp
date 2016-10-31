@@ -1,13 +1,13 @@
 #pragma once
 /* physical constants */
-constexpr double abs_zero = -273.15; //　absolute zero [℃]
-constexpr double k = 1.380649e-23; //　Boltzmann constant [J/K]
+constexpr double abs_zero = -273.15; // absolute zero [degree Celsius]
+constexpr double k = 1.380649e-23; // Boltzmann constant [J/K]
 constexpr double pi = 3.141592653589793238462643383279;
 
 /* parameters (user-defined)*/
-constexpr double t_degc = 25; // temperature [℃]
+constexpr double t_degc = 25; // temperature [degree Celsius]
 constexpr double rho = 2.699e+3; // dencity of particle [kg/m^3]
-constexpr double eta = 0.890e-3; // viscocity of fluid [Pa s]
+constexpr double eta = 0.890e-3; // viscocity of fluid [Pa*s]
 constexpr double ra = 100e-6; // radius of particle [m]
 constexpr double dt = 5.747e-4; // step size in time [s]
 constexpr unsigned dim = 1; // dimension [-]
