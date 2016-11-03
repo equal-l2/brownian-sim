@@ -1,38 +1,10 @@
-#include <iostream> // std::ostream
-#include <vector>   // std::vector
+#include <iostream>
 #include <cstdlib>
-#include <cstring>
 #include <memory>
 #include <string>
 #include <sstream>
 #include <fstream>
-
-class Hist{
-    typedef Hist self;
-public:
-    Hist(double min_in, double max_in, size_t n_of_bin_in)
-        :min(min_in),max(max_in),n_of_bin(n_of_bin_in),width((max-min)/n_of_bin),bins(n_of_bin){}
-
-    void print(std::ostream& os = std::cout){
-        for(unsigned i=0;i<n_of_bin;++i)
-            os << std::scientific << (i*width+min) << ' ' << bins[i] << '\n';
-    }
-
-    template<typename InIt>
-    inline void insert(InIt b, InIt e){
-	for(auto it=b;b!=e;++it) insert(*b);
-    }
-
-    inline void insert(double v){
-	if(min <= v && v < max ) ++bins[static_cast<std::size_t>((v-min)/width)];
-    }
-
-    const double min;
-    const double max;
-    const size_t n_of_bin;
-    const double width;
-    std::vector<double> bins;
-};
+#include "histo.hpp"
 
 template <typename T>
 T ato(char* a){
@@ -57,7 +29,7 @@ int main(int argc, char** argv){
     const auto max = atof(argv[3]);
     const std::string filename(argv[4]);
     
-    Hist h(min,max,n_of_bin);
+    Histo h(min,max,n_of_bin);
     
     std::shared_ptr<std::istream> is;
     if(filename == "-"){
@@ -77,5 +49,5 @@ int main(int argc, char** argv){
 	h.insert(buf);
     }
 
-    h.print();
+    h.print(std::cout);
 }
