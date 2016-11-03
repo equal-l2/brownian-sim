@@ -2,10 +2,15 @@ language: cpp
 compiler:
     - g++-6
     - clang++-3.8
+before_install:
+    - pip install --user cpp-coverall
 script  : 
     - if [ "$CXX" = "g++" ]; then export CXX="g++-6"; fi
     - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.8"; fi
-    - make
+    - make CXXFLAGS="-std=c++11 -O0 -coverage"
+    - make test
+after_success:
+    - coveralls
 addons:
     apt:
         sources:
