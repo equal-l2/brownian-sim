@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include "histo.hpp"
+#include "l2lib/histo.hpp"
 
 template <typename T>
 T ato(char* a){

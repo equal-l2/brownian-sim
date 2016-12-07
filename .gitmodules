@@ -1,0 +1,3 @@
+[submodule "l2lib"]
+	path = l2lib
+	url = https://github.com/equal-l2/l2lib
