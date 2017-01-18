@@ -1,21 +1,24 @@
 language: cpp
+env:
+  global:
+    - secure: "IRSXsNprmjsdAq/b4nzKbNW5vohJD+rOFDPq5SBYC3FYVUg5Qzsy6ZuqQwWDdsseBPT7rBRMfIDfb3UWakgHNW42lw+cJnYYE0trBvqy5DhtYPE1hSFQsaWhDlWAwzs+c4uGWGRSU4dXdHo6JxtV4KfCnZEaB3gv2ZvYt78JSO9KZFMphudflV5C+gDwTM2etO9quCv/9m/QuYuZZa7UPyW/tjz4lMU+xnGlhGlLPEdsgwNrwEMUvKGWfTtl6wLYX2JedzzwOaSR0bpm4GA7ykrkBrrl9c8BjR/nZl4OXpwmEq4dcSb6ujyipzo8poILyvzmr3s+8Sv4GvmicsnwaFevoBeU+DJYfUD+YhDUQR/Frct9W91y0NqVa4GJ4g3tB/aVso/+wQZ3evAaxx6EWnAEggXh9m8aLFWraY1u9MLqFaLGsLvNWuPiGsn7EEK2a9/8mIxvV7OHD8ezMa/gYeX4qKyHLRWH3+kgoXoCG5fAVYvrSu3ht0NkdlG2NlSMRouHWM5qEL/gV2CM5opC1ujjzd1zLfB1ZfOYLWHMiYWLVg4bIl8oomjuhyxhuVbY0kxnQU2xyIkceHmJc/jsQ6catCuO3w88eecsazDxy5Pp2Erk+NhZcmw4ZLSCfsmUvKvd6jnUy0zilZfdlDV8zq65VkTmqNs+ixI6J4o+Zk8="
 compiler:
     - g++-6
-    - clang++-3.8
 before_install:
-    - pip install --user cpp-coveralls
     - if [ "$CXX" = "g++" ]; then export CXX="g++-6"; fi
-    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.8"; fi
-    - export CXXFLAGS="-std=c++11 -O0 -coverage"
+    - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 script:
     - make
-after_success:
-    - coveralls
 addons:
     apt:
         sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.8
         packages:
-            - clang-3.8
             - g++-6
+    coverity_scan:
+      project:
+        name: "equal-l2/brownian-sim"
+      notification_email: equal-l2@users.noreply.github.com
+      build_command_prepend: "cov-configure --comptype g++ --compiler $CXX --template && make clean"
+      build_command: "make"
+      branch_pattern: coverity_scan
