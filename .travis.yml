@@ -6,8 +6,9 @@ before_install:
     - pip install --user cpp-coveralls
     - if [ "$CXX" = "g++" ]; then export CXX="g++-6"; fi
     - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.8"; fi
+    - export CXXFLAGS="-std=c++11 -O0 -coverage"
 script:
-    - make CXXFLAGS="-std=c++11 -O0 -coverage"
+    - make
 after_success:
     - coveralls
 addons:
