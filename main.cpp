@@ -19,10 +19,10 @@ int main(){
   particles ps;
 
   #if PRINT_PROGRESS_BAR
-  l2lib::progress_bar pbar(process_time/dt+1,50);
+  l2lib::progress_bar pbar(rep_n,50);
   #endif
 
-  for(unsigned long long i=0;i*dt < process_time;++i){
+  for(unsigned long long i=0;i < rep_n;++i){
     ps.adv();
 
     #if PRINT_PROGRESS_BAR
