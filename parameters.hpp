@@ -10,8 +10,8 @@ constexpr double rho = 2.699e+3;                  // dencity of particle [kg/m^3
 constexpr double eta = 0.890e-3;                  // viscocity of fluid [Pa*s]
 constexpr double ra = 100e-6;                     // radius of particle [m]
 constexpr double dt = 5.747e-4;                   // step size in time [s]
-constexpr unsigned dim = 1;                       // dimension [-]
-constexpr unsigned long long ptclnum = 1000;      // particle amount [-]
+constexpr unsigned dim = 3;                       // dimension [-]
+constexpr unsigned long long ptclnum = 10000;      // particle amount [-]
 constexpr double sim_time = 0.3;                  // simulation time [s]
 
 /* parameters (automatically calculated) */

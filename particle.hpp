@@ -3,7 +3,7 @@
 #include <random>     // std::mt19937, std::normal_distribution
 #include <functional> // std::bind
 #include <chrono>     // std::chrono::system_clock
-#include <cmath>      // std::exp
+#include <cmath>      // std::exp, std::sqrt
 #include "parameters.hpp"
 
 template<unsigned dim>
@@ -11,6 +11,14 @@ struct particle{
   particle():r(),v(){}
   std::array<double,dim> r;
   std::array<double,dim> v;
+
+  double vnorm() {
+      double ret = 0;
+      for(auto vn: v) {
+          ret += vn*vn;
+      }
+      return std::sqrt(ret);
+  }
 };
 
 struct particles : public std::array<particle<dim>,ptclnum> {
